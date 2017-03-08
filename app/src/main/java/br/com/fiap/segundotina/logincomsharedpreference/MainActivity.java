@@ -1,5 +1,6 @@
 package br.com.fiap.segundotina.logincomsharedpreference;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,12 +39,22 @@ public class MainActivity extends AppCompatActivity {
 
         if (usuario.trim().equals("fiap") && senha.trim().equals("123") ){
 
+            SharedPreferences.Editor e = sp.edit();
+
             if (chkSalvarSenha.isChecked()){
-                SharedPreferences.Editor e = sp.edit();
                 e.putString("usuario", usuario);
                 e.putString("senha", senha);
-                e.commit();
+
+            } else {
+
+                e.remove("usuario");
+                e.remove("senha");
             }
+
+            e.commit();
+
+            Intent it = new Intent(this, DadosActivity.class);
+            startActivity(it);
 
             //Lógica para abrir outra activity
             return;
