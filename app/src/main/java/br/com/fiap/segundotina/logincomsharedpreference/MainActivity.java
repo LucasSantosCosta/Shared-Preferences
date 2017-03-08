@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         //Inicializa o Shared Preferences no modo privado
         sp = getPreferences(MODE_PRIVATE);
 
+        edtUsuario.setText(sp.getString("usuario", ""));
+        edtSenha.setText(sp.getString("senha", ""));
+
     }
 
     public void login(View view) {
